@@ -20,3 +20,5 @@ position = Vector2(0, 12)
 rotation = -0.7853982
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_lxpsg")
+
+[node name="LaserContainer" type="Node" parent="." unique_id=314967600]

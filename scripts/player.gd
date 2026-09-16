@@ -1,7 +1,16 @@
 extends CharacterBody2D
 
-@export_category("Constants")
-@export var speed = 300
+@export_category("Parameters")
+@export var speed: float = 200
+
+@onready var laser_container: Node = $LaserContainer
+
+var laser_scene: PackedScene = preload("res://scenes/laser.tscn")
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 
 func _physics_process(_delta: float) -> void:
@@ -17,3 +26,13 @@ func _physics_process(_delta: float) -> void:
 		velocity.y = speed
 
 	move_and_slide()
+
+	var screen_size: Vector2 = get_viewport_rect().size
+
+	global_position = global_position.clamp(Vector2(0, 0), screen_size)
+
+
+func shoot() -> void:
+	var laser_instance: Area2D = laser_scene.instantiate()
+	laser_container.add_child(laser_instance)
+	laser_instance.global_position = global_position + Vector2(40, 0)
