@@ -3,8 +3,12 @@
 [ext_resource type="Script" uid="uid://28eyfubdiwnq" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://btqqc738dlwf3" path="res://assets/texture/player_ship.png" id="2_qhqgy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxpsg"]
-size = Vector2(70, 70)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1u8ps"]
+radius = 17.142868
+height = 97.14291
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u8ps"]
+size = Vector2(35, 35)
 
 [node name="Player" type="CharacterBody2D" unique_id=1026951068]
 rotation = 1.5707964
@@ -16,10 +20,16 @@ script = ExtResource("1_g2els")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1816273612]
 texture = ExtResource("2_qhqgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1906518010]
-position = Vector2(0, 12)
-rotation = -0.7853982
-scale = Vector2(0.9999999, 0.9999999)
-shape = SubResource("RectangleShape2D_lxpsg")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1009479731]
+position = Vector2(9.536743e-07, 12.857142)
+rotation = 1.5707964
+scale = Vector2(0.9999992, 0.9999992)
+shape = SubResource("CapsuleShape2D_1u8ps")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=471109994]
+position = Vector2(9.53674e-07, -5.7142844)
+rotation = -0.7853983
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_1u8ps")
 
 [node name="LaserContainer" type="Node" parent="." unique_id=314967600]

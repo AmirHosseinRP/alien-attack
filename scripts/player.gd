@@ -1,14 +1,18 @@
+class_name Player
+
 extends CharacterBody2D
 
+signal took_damage
+
 @export_category("Parameters")
-@export var speed: float = 200
+@export var speed: float = 300
 
 @onready var laser_container: Node = $LaserContainer
 
 var laser_scene: PackedScene = preload("res://scenes/laser.tscn")
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 
@@ -36,3 +40,11 @@ func shoot() -> void:
 	var laser_instance: Area2D = laser_scene.instantiate()
 	laser_container.add_child(laser_instance)
 	laser_instance.global_position = global_position + Vector2(40, 0)
+
+
+func take_damage() -> void:
+	emit_signal("took_damage")
+
+
+func die() -> void:
+	queue_free()
