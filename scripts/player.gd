@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 signal took_damage
 
-@export_category("Parameters")
 @export var speed: float = 300
 
 @onready var laser_container: Node = $LaserContainer
