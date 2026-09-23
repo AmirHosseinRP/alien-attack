@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://ck42kgbadnj28"]
+
+[ext_resource type="FontFile" uid="uid://dxdo2k431aqrl" path="res://assets/font/PixelifySans.ttf" id="1_61w2s"]
+[ext_resource type="Script" uid="uid://dij1o1g27y25j" path="res://scripts/game_over_screen.gd" id="1_jw6e5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blt1j"]
+bg_color = Color(0.025000095, 0, 0.5, 0.3764706)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_wa2qn"]
+font = ExtResource("1_61w2s")
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_cyfkl"]
+font = ExtResource("1_61w2s")
+font_size = 48
+font_color = Color(0, 0.86, 0.6019998, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1u8ps"]
+bg_color = Color(0, 0.39466658, 0.64, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="GameOverScreen" type="Control" unique_id=777902856]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jw6e5")
+
+[node name="Panel" type="Panel" parent="." unique_id=1434189907]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -358.0
+offset_top = -210.0
+offset_right = 358.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_blt1j")
+
+[node name="GameOverLabel" type="Label" parent="Panel" unique_id=1013512325]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -146.0
+offset_right = 182.5
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_wa2qn")
+
+[node name="ScoreLabel" type="Label" parent="Panel" unique_id=1002117722]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.5
+offset_top = -29.5
+offset_right = 120.5
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_cyfkl")
+
+[node name="Button" type="Button" parent="Panel" unique_id=440920573]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.25
+offset_top = 75.0
+offset_right = 76.25
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_61w2s")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_1u8ps")
+text = "Retry"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
