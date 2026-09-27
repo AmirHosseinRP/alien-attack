@@ -2,6 +2,34 @@
 
 [ext_resource type="Script" uid="uid://28eyfubdiwnq" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://btqqc738dlwf3" path="res://assets/texture/player_ship.png" id="2_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://bsn3d7up3ydgx" path="res://assets/audio/shoot.wav" id="3_qhqgy"]
+
+[sub_resource type="Gradient" id="Gradient_qhqgy"]
+offsets = PackedFloat32Array(0, 0.52105266, 1)
+colors = PackedColorArray(1, 0.8333334, 0, 0, 1, 0.40600002, 0.00999999, 1, 1, 0, 0.016666412, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dqkch"]
+gradient = SubResource("Gradient_qhqgy")
+
+[sub_resource type="Curve" id="Curve_dqkch"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qhqgy"]
+curve = SubResource("Curve_dqkch")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_blt1j"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 12, 1)
+initial_velocity_min = -200.0
+initial_velocity_max = -200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 8.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_qhqgy")
+color_ramp = SubResource("GradientTexture1D_dqkch")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1u8ps"]
 radius = 17.142868
@@ -16,6 +44,14 @@ scale = Vector2(0.7, 0.7)
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_g2els")
+
+[node name="FlameParticles" type="GPUParticles2D" parent="." unique_id=984583098]
+position = Vector2(0, 35.714287)
+rotation = 4.712389
+scale = Vector2(0.99999994, 0.99999994)
+amount = 100
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_blt1j")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1816273612]
 texture = ExtResource("2_qhqgy")
@@ -33,3 +69,7 @@ scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_1u8ps")
 
 [node name="LaserContainer" type="Node" parent="." unique_id=314967600]
+
+[node name="PlayerShootSound" type="AudioStreamPlayer" parent="." unique_id=112502128]
+stream = ExtResource("3_qhqgy")
+volume_db = -15.0

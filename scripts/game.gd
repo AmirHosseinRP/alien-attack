@@ -8,6 +8,8 @@ var game_over_screen_scene: PackedScene = preload("res://scenes/game_over_screen
 @onready var player: Player = $Player
 @onready var hud: HUD = $UI/HUD
 @onready var ui: CanvasLayer = $UI
+@onready var enemy_hit_sound: AudioStreamPlayer = $EnemyHitSound
+@onready var player_take_damage_sound: AudioStreamPlayer = $PlayerTakeDamageSound
 
 
 func _ready() -> void:
@@ -23,6 +25,7 @@ func _on_death_zone_area_entered(area: Area2D) -> void:
 func _on_player_took_damage() -> void:
 	lives -= 1
 	hud.set_lives_label(lives)
+	player_take_damage_sound.play()
 
 	if lives == 0:
 		player.die()
@@ -41,3 +44,4 @@ func _on_enemy_spawner_enemy_spawned(enemy_instance: Area2D) -> void:
 func _on_enemy_died() -> void:
 	score += 100
 	hud.set_score_label(score)
+	enemy_hit_sound.play()

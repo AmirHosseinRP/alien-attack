@@ -7,6 +7,7 @@ signal took_damage
 @export var speed: float = 300
 
 @onready var laser_container: Node = $LaserContainer
+@onready var player_shoot_sound: AudioStreamPlayer = $PlayerShootSound
 
 var laser_scene: PackedScene = preload("res://scenes/laser.tscn")
 
@@ -39,6 +40,7 @@ func shoot() -> void:
 	var laser_instance: Area2D = laser_scene.instantiate()
 	laser_container.add_child(laser_instance)
 	laser_instance.global_position = global_position + Vector2(40, 0)
+	player_shoot_sound.play()
 
 
 func take_damage() -> void:
