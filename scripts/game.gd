@@ -37,8 +37,12 @@ func _on_player_took_damage() -> void:
 		game_over_screen_instance.set_score(score)
 
 
-func _on_enemy_spawner_enemy_spawned(enemy_instance: Area2D) -> void:
+func _on_enemy_spawner_enemy_spawned(enemy_instance: Enemy) -> void:
 	enemy_instance.connect("died", _on_enemy_died)
+
+
+func _on_enemy_spawner_path_enemy_spawned(path_enemy_instance: PathEnemy) -> void:
+	path_enemy_instance.enemy.connect("died", _on_enemy_died)
 
 
 func _on_enemy_died() -> void:
